@@ -1,0 +1,26 @@
+# Dependency directories
+node_modules/
+
+# Environment configuration
+.env
+
+# Config with secrets
+config/config.json
+
+# Logs
+*.log
+logs/
+
+# Directory for compiled output
+dist/
+build/
+
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Debug log from npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
