@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const { sequelize, globalOptions } = require('../db/database.js'); // Adjust the path as needed
-
+const { sequelize, globalOptions } = require('../db/database.js'); 
 class User extends Model {}
 User.init({
     id: {
