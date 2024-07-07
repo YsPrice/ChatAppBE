@@ -1,5 +1,7 @@
-// app.js
+
+require('dotenv').config();
 const express = require('express');
+
 
 const messageRoutes = require('./routes/messageRoutes.js');
 const app = express();
@@ -16,4 +18,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = app; // Make sure to export app
+module.exports = app; 

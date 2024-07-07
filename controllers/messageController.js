@@ -1,5 +1,7 @@
 const Message  = require('../Models/Message.js');
-const User = require('../Models/User.js')
+const User = require('../Models/User.js');
+
+
 exports.createMessage = async (req,res) => {
 const {fromUserId, toUserId, content } = req.body;
 
