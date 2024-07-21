@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require("../Models/User");
 const { generateToken } = require('../utils/jwtUtils');
-const { where } = require('sequelize');
+
 
 exports.createUser = async (req,res) => {
     const {email, username,password} = req.body;
@@ -133,35 +133,38 @@ res.status(200).json({message:'User account deleted successfully.'})
 
 exports.addProfileImage = async (req,res) => {
 try{
-    const {email} = req.body
-if(!req.file){
-    return res.status(400).json({
-        message:'nothing was uploaded'
+    const userIdFromToken= req.user.id;
+    const user = await User.findOne({
+        where:{id:userIdFromToken}
+        })
+    if(!user){
+        
+    return res.status(404).json({
+        message:"user not found"
     });
+    }
+if(req.file){
+    const [updated] = await User.update(
+        {profileImage: req.file.path},
+        {where:{id: userIdFromToken}}
+    );
+    if(updated){
+        return res.status(200).json({
+            message: 'Image updated successfully',
+            profileImage:req.file.path
+        })
+    }
 }
-const user = await User.findOne({
-    where:{email}
-    })
-if(!user){
-    
-return res.status(404).json({
-    message:"user not found"
+
+return res.status(400).json({
+    message: 'No file uploaded'
 });
-}
-const [updated] = await User.update(
-    {profileImage: req.file.path},
-    {where:{id: user.id}}
-);
-if(updated){
-    return res.status(200).json({
-        message: 'Image updated successfully',
-        profileImage:req.file.path
-    })
-}
+
+
    
 }catch(error){
     res.status(500).json({
-        message:"Something went wrong picture not uploaded",
+        message:"Something went wrong, picture not uploaded",
         error:error.message
     })
 }
