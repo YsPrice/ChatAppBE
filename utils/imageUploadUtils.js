@@ -19,8 +19,8 @@ const storage = new CloudinaryStorage({
     params:{
         folder: 'profile_pics_chat',
         format: async (req,file)=>{
-          if(file.mimetype === 'image/jpeg') return jpg;
-          if(file.mimetype === 'image/png') return png;
+          if(file.mimetype === 'image/jpeg') return 'jpg';
+          if(file.mimetype === 'image/png') return 'png';
           return 'jpg';
         },
         public_id: (req,file)=> file.fieldname + '-' + Date.now()

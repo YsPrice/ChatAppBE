@@ -11,40 +11,32 @@ Message.init({
     content: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             notEmpty: true,
-            len: [1,500]
+            len: [1, 500]
         }
     },
-    fromUserId: {
+    from_user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: { model: 'users', key: 'id' } 
     },
-    toUserId: {
+    to_user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: { model: 'users', key: 'id' } 
     },
-    conversationId:{
+    conversation_id: {
         type: DataTypes.INTEGER,
-        allowNull:false,
-        references:{model:'conversations', key:'id'}
-
+        allowNull: false,
+        references: { model: 'conversations', key: 'id' }
     }
 }, {
     sequelize,
     indexes: [
-{
-    fields:['from_user_id'],
-
-},
-{
-fields:['to_user_id']
-},
-{
-    fields:['conversation_id']
-    }
+        { fields: ['from_user_id'] },
+        { fields: ['to_user_id'] },
+        { fields: ['conversation_id'] }
     ],
     modelName: 'Message',
     tableName: 'messages',

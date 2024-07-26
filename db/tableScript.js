@@ -1,4 +1,12 @@
-const sequelize = require('./database');
+// const {sequelize} = require('./database');
+// const chalk = require('chalk');
+// sequelize.sync().then(()=>{
+//     console.log(chalk.greenBright('Everything is up to date!'))
+
+    
+// }).catch((err)=>{
+//     console.log(chalk.red('error updating database:'), chalk.red(err))
+// });
 
 
 // sequelize.getQueryInterface().showAllTables().then(tables => {
@@ -6,3 +14,4 @@ const sequelize = require('./database');
 //   }).catch(error => {
 //     console.error('Error fetching tables:', error);
 //   });
+

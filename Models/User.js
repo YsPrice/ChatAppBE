@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
-const { sequelize, globalOptions } = require('../db/database.js'); 
+const { sequelize, globalOptions } = require('../db/database.js');
+
 class User extends Model {}
 User.init({
     id: {
@@ -14,6 +15,7 @@ User.init({
     },
     email: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
         validate: {
             isEmail: true
@@ -23,13 +25,9 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    profileImage: {
+    profileImage:{
         type: DataTypes.STRING,
-        allowNull: true
-    },
-    lastActive: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        allowNull:true
     }
 }, {
     sequelize,

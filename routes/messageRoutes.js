@@ -6,7 +6,7 @@ const { authRequired } = require('../utils/jwtUtils');
 
 
 router.post('/new', authRequired, messageController.createMessage);
-router.post('/edit', authRequired, messageController.editMessage);
+router.put('/edit/:id', authRequired, messageController.editMessage);
 router.delete('/', authRequired, messageController.deleteMessage)
 
 module.exports = router;
